@@ -91,7 +91,7 @@ add_one(4) * 3      # Evaluates to 15
 
 # To finish off, here's a real mind-bender:
 
-add_one(add_one(add_one(add_one(add_one(add_one(1))))))
+# add_one(add_one(add_one(add_one(add_one(add_one(1))))))
 
 # @TASK: What do you think that evaluates to? And why? Give
 # it a go and find out.
@@ -101,7 +101,10 @@ add_one(add_one(add_one(add_one(add_one(add_one(1))))))
 
 # EXPRESSIONS PLAYGROUND BEGINS
 
+def my_own_exponentialiser(num_a, num_b):
+  return num_a ** num_b
 
+print(f"{my_own_exponentialiser(3, 2)}")
 
 # EXPRESSIONS PLAYGROUND ENDS
 
