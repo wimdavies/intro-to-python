@@ -37,15 +37,28 @@ def play_game():
   while not is_game_over(board):
     print(print_board(board))
     print("It's " + player + "'s turn.")
+
     # `input` asks the user to type in a string
     # We then need to convert it to a number using `int`
-    row = int(input("Enter a row: "))
-    column = int(input("Enter a column: "))
+    # This has been edited to convert user-intuitive input into valid indices
+    row = int(input("Enter a row: ")) - 1
+    column = int(input("Enter a column: ")) - 1
+
+    # loop until player input is for an unoccupied cell
+    while is_cell_occupied(board, row, column):
+      print("That cell already contains a tile. Please make a different move.")
+      row = int(input("Enter a row: ")) - 1
+      column = int(input("Enter a column: ")) - 1
+
+    # if player input is valid, the move is made
     board = make_move(board, row, column, player)
+
+    # change players
     if player == "X":
       player = "O"
     else:
       player = "X"
+    # end of loop
   print(print_board(board))
   print("Game over!")
 
@@ -60,6 +73,10 @@ def make_move(board, row, column, player):
   board[row][column] = player
   return board
 
+# This function will check to see if the cell already
+# contains a played tile.
+def is_cell_occupied(board, row, column):
+  return "." not in board[row][column]
 
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
