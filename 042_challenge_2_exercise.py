@@ -78,6 +78,11 @@ def make_move(board, row, column, player):
 def is_cell_occupied(board, row, column):
   return "." not in board[row][column]
 
+# This function will return true if the board is filled
+# with player tiles, and false if any cells are empty.
+def is_board_full(board):
+  return not any("." in row for row in board)
+
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
   return [
@@ -123,7 +128,9 @@ def is_game_over(board):
       if are_all_cells_the_same(board, group[0], group[1], group[2]):
         return True # We found a winning row!
         # Note that return also stops the function
-  return False # If we get here, we didn't find a winning row
+  # If there isn't a winning group, we check if the game is otherwise played out.
+  # We return true if it is, ending the game in a draw.
+  return is_board_full(board)
 
 # And test it out:
 
