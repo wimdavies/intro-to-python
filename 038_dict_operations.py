@@ -57,7 +57,7 @@ print(letter_counts)
 # @TASK: Complete this exercise.
 
 print("")
-print("Function: count_words_by_length")
+print("Function: count_word_counts_by_length")
 
 # Write this function that counts the number of words by
 # how many letters they have. For example:
@@ -66,16 +66,22 @@ print("Function: count_words_by_length")
 # result: {3: 2, 1: 1, 4: 1}
 # Since there are two words of length 3, etc.
 
-def count_words_by_length(words):
-  pass
+def count_word_counts_by_length(words):
+  word_counts_by_length = {}
+  for word in words:
+    if len(word) not in word_counts_by_length:
+      word_counts_by_length[len(word)] = 1
+    else:
+      word_counts_by_length[len(word)] += 1
+  return word_counts_by_length
 
 check_that_these_are_equal(
-  count_words_by_length(["hat", "cat", "I", "bird"]),
+  count_word_counts_by_length(["hat", "cat", "I", "bird"]),
   {3: 2, 1: 1, 4: 1}
 )
 
 check_that_these_are_equal(
-  count_words_by_length(["four", "four", "four", "one"]),
+  count_word_counts_by_length(["four", "four", "four", "one"]),
   {4: 3, 3: 1}
 )
 
